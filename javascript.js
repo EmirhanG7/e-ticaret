@@ -1,14 +1,14 @@
 const products = [
   {
     id: '1',
-    name: 'ayakkabi',
+    name: 'ayakkabı',
     price: 1500,
     brand: 'nike',
     stock: 4
   },
   {
     id: '2',
-    name: 'ayakkabi',
+    name: 'ayakkabı',
     price: 2000,
     brand: 'adidas',
     stock: 3
@@ -29,21 +29,21 @@ const products = [
   },
   {
     id: '5',
-    name: 'gomlek',
+    name: 'gömlek',
     price: 900,
     brand: 'zara',
     stock: 4
   },
   {
     id: '6',
-    name: 'gomlek',
+    name: 'gömlek',
     price: 700,
     brand: 'mavi',
     stock: 2
   },
   {
     id: '7',
-    name: 'gomlek',
+    name: 'gömlek',
     price: 850,
     brand: 'mudo',
     stock: 1
@@ -67,14 +67,45 @@ const products = [
 
 const basket = [];
 const myProducts = document.querySelector('#myProducts');
+const productFilter = document.querySelector('#studentFilter');
 const basketContainer = document.querySelector('#basket');
 const clearBasketButton = document.querySelector("#clear-basket");
 clearBasketButton.addEventListener("click", clearBasket);
+const filterTable = document.querySelector('#filterTable');
+
+let filteredProduct = '';
+
+function filterProduct(){
+    filteredProduct = this.value;
+    renderProducts();
+}
+productFilter.addEventListener('keyup', filterProduct);
+
+// function render() {
+//   filterTable.innerHTML = '';
+//     for(const product of products) {
+//         if(filteredProduct !== ''){
+//             if(product.name.indexOf(filteredProduct) === -1 && product.brand.indexOf(filteredProduct) === -1){
+//               continue;
+//             }
+//         }
+        
+//         filterTable.innerHTML += `<tr><li>${product.name} ${product.brand}</li></tr>`;
+
+//     }
+// }
+
+
 
 function renderProducts() {
   myProducts.innerHTML = "";
   for (let i = 0; i < products.length; i++) {
     let product = products[i];
+      if(filteredProduct !=='') {
+        if(product.name.indexOf(filteredProduct) === -1 && product.brand.indexOf(filteredProduct) === -1){
+          continue;
+        }
+      }
     let tableRow = document.createElement('tr');
     tableRow.innerHTML = `
       <td>${product.id}</td>
@@ -87,6 +118,7 @@ function renderProducts() {
     myProducts.appendChild(tableRow);
   }
 }
+
 
 
 function renderBasket() {
@@ -107,6 +139,7 @@ function renderBasket() {
   }
   updateTotal();
 }
+
 
 
 function updateTotal() {
