@@ -50,7 +50,6 @@ function addEventListeners() {
   }
 }
 
-// Ürün düzenleme işlevi
 function editProduct(productId) {
   const product = data.products.find((item) => item.id === Number(productId));
 
