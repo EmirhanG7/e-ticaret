@@ -67,7 +67,7 @@ const products = [
 
 const basket = [];
 const myProducts = document.querySelector('#myProducts');
-const productFilter = document.querySelector('#studentFilter');
+const productFilter = document.querySelector('#productFilter');
 const basketContainer = document.querySelector('#basket');
 const clearBasketButton = document.querySelector("#clear-basket");
 clearBasketButton.addEventListener("click", clearBasket);
